@@ -1,12 +1,9 @@
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import Layout from "../Layout";
 import { useState } from "react";
 const Dashboard = () => {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <Navbar setIsOpen={setIsOpen} />
-      <Sidebar isOpen={isOpen} />
+      <Layout />
     </div>
   );
 };
