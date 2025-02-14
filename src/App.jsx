@@ -1,8 +1,9 @@
 import Dashboard from "./pages/Dashboard";
+import LoginForm from "./pages/Login";
 function App() {
   return (
     <>
-      <Dashboard />
+      <LoginForm />
     </>
   );
 }
