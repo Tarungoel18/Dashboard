@@ -1,46 +1,31 @@
-import React from "react";
-import LoginForm from "./pages/Login";
-import SignupForm from "./pages/SignUp";
-const RouteConfig = () => {
-  return (
-    <Router>
-      <Route path="/login" element={<LoginForm/>} />
-      
-      <Routes>
-        <Route path="/" element={<Layout />}>
-        <Route index element={<SignupForm />} />
-          <Route path="blogs" element={<Blogs />} />
+// src/routeConfig.js
+import { Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Signup from './pages/SignUp';
+import Home from './pages/Home';
+import Layout from './Layout';
+const routes = [
+  {
+    path: '/',
+    element: 'redirect',
+    redirectTo: '/signup', // Redirect to login if not authenticated
+  },
+  {
+    path: '/login',
+    element: <Login />,
+    isProtected: false, // Do not require authentication
+  },
+  {
+    path: '/signup',
+    element: <Signup />,
+    isProtected: false, // Do not require authentication
+  },
+  {
+    path: '/home',
+    element: <Home />,
+    layout: Layout,
+    isProtected: true, // Require authentication
+  },
+];
 
-          <Route
-            element={
-              <ProtectedRoute
-                isAuthenticated={user.isAuthenticated}
-                userRole={user.role}
-                allowedRoles={["user", "admin"]}
-              />
-            }
-          >
-            <Route path="create" element={<Create />} />
-          </Route>
-
-          <Route
-            element={
-              <ProtectedRoute
-                isAuthenticated={user.isAuthenticated}
-                userRole={user.role}
-                allowedRoles={["admin"]}
-              />
-            }
-          >
-            <Route path="admin" element={<AdminDashboard />} />
-          </Route>
-        </Route>
-
-       
-        <Route path="/unauthorized" element={<Unauthorized />} />
-      </Routes>
-    </Router>
-  );
-};
-
-export default RouteConfig;
+export default routes;
