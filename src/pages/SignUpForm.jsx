@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
-
+import { Link } from "react-router-dom";
 // Custom Input Component
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -101,7 +101,7 @@ const SignupForm = () => {
             Already have an account?{" "}
           </p>
           <p className="text-blue-500 hover:text-blue-700 font-semibold">
-            Login
+            <Link to="/"> Login </Link>
           </p>
         </div>
       </div>
