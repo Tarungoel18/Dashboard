@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
-
+import { useNavigate } from "react-router-dom";
 // Custom Input Component
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -36,21 +36,21 @@ const SignupForm = ({ onSignup }) => {
     try {
       // Here you would typically make an API call to register the user
       // const response = await api.signup(values);
-      
+
       // For demonstration, we'll simulate an API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Call the onSignup prop passed from RouteConfig
       onSignup();
-      
+
       // Navigate to home page
-      navigate('/home');
+      navigate("/home");
     } catch (error) {
       // Handle specific error cases
       if (error.field) {
         setFieldError(error.field, error.message);
       } else {
-        setFieldError('email', 'Registration failed. Please try again.');
+        setFieldError("email", "Registration failed. Please try again.");
       }
     } finally {
       setSubmitting(false);

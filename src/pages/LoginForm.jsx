@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 // Custom Input Component
 const MyTextInput = ({ label, ...props }) => {
@@ -32,20 +33,20 @@ const LoginForm = ({ onLogin }) => {
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-   
+      // Simulate an API call
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Call the onLogin function (e.g., to update global state)
       onLogin();
-      
-     
-      navigate('/home');
+
+      // Redirect to the home page
+      navigate("/home");
     } catch (error) {
       // Handle specific error cases
       if (error.field) {
         setFieldError(error.field, error.message);
       } else {
-        setFieldError('email', 'Login failed. Please check your credentials.');
+        setFieldError("email", "Login failed. Please check your credentials.");
       }
     } finally {
       setSubmitting(false);
@@ -88,24 +89,35 @@ const LoginForm = ({ onLogin }) => {
                 placeholder="••••••••"
               />
 
-            <button
-              type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-4"
-            >
-              Log In
-            </button>
-            <div className="flex justify-between items-center mt-4">
-              <p className="text-gray-600 text-sm">
-                Don't have an account?{" "}
-                <p className="text-blue-500 hover:text-blue-700 font-semibold">
-                  Sign Up
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-4"
+              >
+                {isSubmitting ? "Logging In..." : "Log In"}
+              </button>
+
+              <div className="flex justify-between items-center mt-4">
+                <p className="text-gray-600 text-sm">
+                  Don't have an account?{" "}
+                  <button
+                    type="button"
+                    className="text-blue-500 hover:text-blue-700 font-semibold"
+                    onClick={() => navigate("/signup")} // Add navigation to signup page
+                  >
+                    Sign Up
+                  </button>
                 </p>
-              </p>
-              <p className="text-blue-500 hover:text-blue-700 text-sm font-semibold">
-                Forgot Password?
-              </p>
-            </div>
-          </Form>
+                <button
+                  type="button"
+                  className="text-blue-500 hover:text-blue-700 text-sm font-semibold"
+                  onClick={() => navigate("/forgot-password")} // Add navigation to forgot password page
+                >
+                  Forgot Password?
+                </button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>
