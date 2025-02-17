@@ -1,31 +1,36 @@
-// src/routeConfig.js
-import { Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Signup from './pages/SignUp';
-import Home from './pages/Home';
-import Layout from './Layout';
-const routes = [
-  {
-    path: '/',
-    element: 'redirect',
-    redirectTo: '/signup', // Redirect to login if not authenticated
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    isProtected: false, // Do not require authentication
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-    isProtected: false, // Do not require authentication
-  },
-  {
-    path: '/home',
-    element: <Home />,
-    layout: Layout,
-    isProtected: true, // Require authentication
-  },
-];
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import routes from "./RouteConfig"; // Import route configuration
+import LoginForm from "./pages/LoginForm";
+import SignUpForm from "./pages/SignUpForm";
+import Layout from "./Layout";
+import Home from "./pages/Home";
+const RouteConfig = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-export default routes;
+  // Handle login and signup
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleSignup = () => {
+    setIsAuthenticated(true);
+  };
+
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/signup" element={<SignUpForm />} />
+        <Route element={<Layout />}>
+          <Route
+            path="/home"
+            element={isAuthenticated ? <Home /> : <Navigate to="/signup" />}
+          />
+        </Route>
+      </Routes>
+    </div>
+  );
+};
+
+export default RouteConfig;

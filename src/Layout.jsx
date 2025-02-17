@@ -1,15 +1,20 @@
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
-import React from "react";
-import { useState } from "react";
-const Layout = ({ children }) => {
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+
+const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
       <Navbar setIsOpen={setIsOpen} />
-      <Sidebar isOpen={isOpen} />
-      <main>{children}</main>
+      <div className="flex ">
+        <Sidebar isOpen={isOpen} />
+        <main>
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };

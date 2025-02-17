@@ -1,28 +1,25 @@
 // src/App.jsx
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import routes from './RouteConfig'; // Import route configuration
-
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import routes from "./RouteConfig"; // Import route configuration
+import LoginForm from "./pages/LoginForm";
+import SignUpForm from "./pages/SignUpForm";
+import Layout from "./Layout";
+import Home from "./pages/Home";
+import RouteConfig from "./RouteConfig";
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  
-
-  // Handle login and signup
-  const handleLogin = () => {
-    setIsAuthenticated(true);
  
-  };
-
-  const handleSignup = () => {
-    setIsAuthenticated(true);
-    
-  };
 
   return (
-    <Router>
-      <Routes>
-        {routes.map((route, index) => {
+    <RouteConfig />
+  
+  );
+}
+
+export default App;
+
+{
+  /* {routes.map((route, index) => {
           const { path, element, layout: Layout, isProtected, redirectTo } = route;
 
           // If the route is protected, we check the authentication status
@@ -45,10 +42,5 @@ function App() {
           );
 
           return <Route key={index} path={path} element={RouteElement} />;
-        })}
-      </Routes>
-    </Router>
-  );
+        })} */
 }
-
-export default App;
