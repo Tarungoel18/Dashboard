@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
+import { useNavigate, Link } from "react-router-dom";
 
 // Custom Input Component
 const MyTextInput = ({ label, ...props }) => {
@@ -29,7 +30,34 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
-const SignupForm = () => {
+const SignupForm = ({ onSignup }) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
+    try {
+      // Here you would typically make an API call to register the user
+      // const response = await api.signup(values);
+      
+      // For demonstration, we'll simulate an API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Call the onSignup prop passed from RouteConfig
+      onSignup();
+      
+      // Navigate to home page
+      navigate('/home');
+    } catch (error) {
+      // Handle specific error cases
+      if (error.field) {
+        setFieldError(error.field, error.message);
+      } else {
+        setFieldError('email', 'Registration failed. Please try again.');
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300">
       <div className="bg-white bg-opacity-90 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
@@ -55,54 +83,55 @@ const SignupForm = () => {
               .oneOf([Yup.ref("password"), null], "Passwords must match")
               .required("Confirm Password is required"),
           })}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}
+          onSubmit={handleSubmit}
         >
-          <Form>
-            <MyTextInput
-              label="Name"
-              name="name"
-              type="text"
-              placeholder="Your Name"
-            />
-            <MyTextInput
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="yourname@example.com"
-            />
-            <MyTextInput
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="••••••••"
-            />
-            <MyTextInput
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-              placeholder="••••••••"
-            />
+          {({ isSubmitting }) => (
+            <Form>
+              <MyTextInput
+                label="Name"
+                name="name"
+                type="text"
+                placeholder="Your Name"
+              />
+              <MyTextInput
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="yourname@example.com"
+              />
+              <MyTextInput
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+              />
+              <MyTextInput
+                label="Confirm Password"
+                name="confirmPassword"
+                type="password"
+                placeholder="••••••••"
+              />
 
-            <button
-              type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 mt-4"
-            >
-              Sign Up
-            </button>
-          </Form>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? "Signing up..." : "Sign Up"}
+              </button>
+            </Form>
+          )}
         </Formik>
         <div className="flex justify-center items-center mt-4">
           <p className="text-center text-gray-600 text-sm">
             Already have an account?{" "}
           </p>
-          <p className="text-blue-500 hover:text-blue-700 font-semibold">
+          <Link 
+            to="/" 
+            className="text-blue-500 hover:text-blue-700 font-semibold ml-1"
+          >
             Login
-          </p>
+          </Link>
         </div>
       </div>
     </div>
