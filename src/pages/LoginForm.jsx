@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+
 // Custom Input Component
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -27,7 +27,31 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
+    try {
+      
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+   
+      onLogin();
+      
+     
+      navigate('/home');
+    } catch (error) {
+      // Handle specific error cases
+      if (error.field) {
+        setFieldError(error.field, error.message);
+      } else {
+        setFieldError('email', 'Login failed. Please check your credentials.');
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300">
       <div className="bg-white bg-opacity-90 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
@@ -47,26 +71,22 @@ const LoginForm = () => {
               .min(8, "Password must be at least 8 characters")
               .required("Password is required"),
           })}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}
+          onSubmit={handleSubmit}
         >
-          <Form>
-            <MyTextInput
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="yourname@example.com"
-            />
-            <MyTextInput
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="••••••••"
-            />
+          {({ isSubmitting }) => (
+            <Form>
+              <MyTextInput
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="yourname@example.com"
+              />
+              <MyTextInput
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+              />
 
             <button
               type="submit"
@@ -78,7 +98,7 @@ const LoginForm = () => {
               <p className="text-gray-600 text-sm">
                 Don't have an account?{" "}
                 <p className="text-blue-500 hover:text-blue-700 font-semibold">
-                  <Link to="/signup">Sign Up </Link>
+                  Sign Up
                 </p>
               </p>
               <p className="text-blue-500 hover:text-blue-700 text-sm font-semibold">
