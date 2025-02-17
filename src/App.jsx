@@ -1,14 +1,14 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import routes from './RouteConfig'; // Import route configuration
+import routes from './routes/route.config'; // Import route configuration
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   
 
-  // Handle login and signup
+ 
   const handleLogin = () => {
     setIsAuthenticated(true);
  
