@@ -4,17 +4,16 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import Layout from "../Layout";
 import Home from "./Home";
-
+import LoginPage from "./LoginPage";
+import SignUpPage from "./SignUpPage";
 const RouteConfig = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const navigate = useNavigate();
 
- 
   const handleLogin = () => {
     setIsAuthenticated(true);
     navigate("/home");
   };
-
 
   const handleSignup = () => {
     setIsAuthenticated(true);
@@ -24,10 +23,10 @@ const RouteConfig = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<LoginForm onLogin={handleLogin} />} />
+        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
         <Route
           path="/signup"
-          element={<SignUpForm onSignup={handleSignup} />}
+          element={<SignUpPage onSignup={handleSignup} />}
         />
         <Route element={<Layout />}>
           <Route

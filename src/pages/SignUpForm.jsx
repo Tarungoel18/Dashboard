@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import Castler_Logo from "../images/Castler_Logo.png";
+import { Link } from "react-router-dom";
 // Custom Input Component
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -58,9 +60,9 @@ const SignupForm = ({ onSignup }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white bg-opacity-90 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+        <h2 className="text-2xl font-bold text-center text-[#E53E3E] mb-6">
           Create an Account!
         </h2>
         <Formik
@@ -114,7 +116,7 @@ const SignupForm = ({ onSignup }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#E53E3E] hover:bg-[#F56565] text-white font-semibold py-3 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "Signing up..." : "Sign Up"}
               </button>
@@ -122,12 +124,18 @@ const SignupForm = ({ onSignup }) => {
           )}
         </Formik>
         <div className="flex justify-center items-center mt-4">
-          <p className="text-center text-gray-600 text-sm">
+          <p className="text-center text-[#E53E3E] text-sm">
             Already have an account?{" "}
           </p>
-          <p className="text-blue-500 hover:text-blue-700 font-semibold">
-            Login
+          <p className="text-[#E53E3E] hover:text-[#F56565] font-bold">
+            <Link to="/"> Login </Link>
           </p>
+        </div>
+
+        {/* Powered by and logo centered at the bottom */}
+        <div className="flex flex-col items-center mt-6">
+          <p className="text-center text-[#E53E3E] text-sm">Powered By</p>
+          <img src={Castler_Logo} alt="Castler" className="mt-2 w-20 h-auto" />
         </div>
       </div>
     </div>

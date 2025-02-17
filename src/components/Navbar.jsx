@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AlignJustify, CircleUserRound } from "lucide-react";
-import logo from "../images/Logo.png";
+import logo from "../images/Logo1.png";
 import SignOutCard from "./SignOutCard";
 
 const Navbar = ({ setIsOpen }) => {
@@ -30,13 +30,16 @@ const Navbar = ({ setIsOpen }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center p-4 bg-gray-800 text-white drop-shadow-xl">
+      <div className="flex justify-between items-center p-4 bg-white text-white drop-shadow-xl">
         <div className="flex items-center space-x-4 ">
-          <AlignJustify className="cursor-pointer" onClick={handleClick} />
-          <img src={logo} className="w-40" />
+          <AlignJustify
+            className="cursor-pointer text-black"
+            onClick={handleClick}
+          />
+          <img src={logo} className="w-auto h-15" />
         </div>
         <CircleUserRound
-          className="cursor-pointer"
+          className="cursor-pointer text-black"
           onClick={() => setShowCard(!showCard)}
           onMouseEnter={() => setShowCard(true)}
           ref={userIconRef} // Attach ref to the user icon

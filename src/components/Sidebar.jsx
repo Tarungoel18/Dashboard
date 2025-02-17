@@ -5,7 +5,7 @@ const Sidebar = ({ isOpen }) => {
     return null;
   }
   return (
-    <div className="flex flex-col w-80 h-screen bg-gray-900 text-white shadow-lg">
+    <div className="flex flex-col w-80 h-screen bg-[#C53030] text-white shadow-lg">
       {/* Dashboard Header */}
       <div className="flex items-center justify-center h-16 border-b border-gray-800">
         <h1 className="text-xl font-semibold">Dashboard</h1>
@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen }) => {
           <a
             key={index}
             href="#"
-            className="flex items-center space-x-3 px-4 py-2 text-sm font-medium bg-gray-800 hover:bg-gray-700 rounded-lg transition"
+            className="flex items-center space-x-3 px-4 py-2 text-sm font-medium  hover:bg-[#9B2C2C] rounded-lg transition"
           >
             {item.icon}
             <span>{item.name}</span>
