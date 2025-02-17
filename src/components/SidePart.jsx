@@ -1,30 +1,42 @@
 import React from "react";
-import { LayoutDashboard } from "lucide-react";
+import { LayoutDashboard, ShieldCheck, RefreshCcw, Settings } from "lucide-react";
+
 const SidePart = () => {
   return (
-    <div className="w-1/2 bg-red-600 h-screen  bg-linear-to-b from-[#9B2C2C] to-[#C53030] flex flex-col gap-12 pt-20 ">
-      <div className="text-center text-white space-y-4  ">
-        <h1 className="text-4xl font-extrabold"> Unified Dashboard</h1>
-        <p className="text-lg font-semibold">
-          Manage Multiple Escrow Accounts From One Place
+    <div className="w-full h-full bg-gradient-to-b from-[#9B2C2C] to-[#C53030] flex flex-col justify-center items-center gap-8 px-8 py-12">
+      {/* Unified Dashboard Section */}
+      <div className="text-center space-y-2">
+        <LayoutDashboard size={40} className="mx-auto text-white" />
+        <h1 className="text-2xl font-extrabold text-white">Unified Dashboard</h1>
+        <p className="text-base font-medium text-gray-200">
+          Manage multiple escrow accounts from one place.
         </p>
       </div>
-      <div className="text-center text-white space-y-4 ">
-        <h1 className="text-4xl font-extrabold">Secure Transactions</h1>
-        <p className="text-lg font-semibold">
-          Multi-Factor Authentication (MFA) Enabled
+
+      {/* Secure Transactions Section */}
+      <div className="text-center space-y-2">
+        <ShieldCheck size={40} className="mx-auto text-white" />
+        <h1 className="text-2xl font-extrabold text-white">Secure Transactions</h1>
+        <p className="text-base font-medium text-gray-200">
+          Multi-Factor Authentication (MFA) enabled for enhanced security.
         </p>
       </div>
-      <div className="text-center text-white space-y-4 ">
-        <h1 className="text-4xl font-extrabold">Real Time Balance</h1>
-        <p className="text-lg font-semibold">
-          Stay updated on your Account Balance Instantly
+
+      {/* Real-Time Balance Section */}
+      <div className="text-center space-y-2">
+        <RefreshCcw size={40} className="mx-auto text-white" />
+        <h1 className="text-2xl font-extrabold text-white">Real-Time Balance</h1>
+        <p className="text-base font-medium text-gray-200">
+          Stay updated on your account balance instantly.
         </p>
       </div>
-      <div className="text-center text-white space-y-4  ">
-        <h1 className="text-4xl font-extrabold">Customizable Workflow</h1>
-        <p className="text-lg font-semibold">
-          Split payments and automate your workflow
+
+      {/* Customizable Workflow Section */}
+      <div className="text-center space-y-2">
+        <Settings size={40} className="mx-auto text-white" />
+        <h1 className="text-2xl font-extrabold text-white">Customizable Workflow</h1>
+        <p className="text-base font-medium text-gray-200">
+          Split payments and automate your workflow seamlessly.
         </p>
       </div>
     </div>
@@ -32,4 +44,3 @@ const SidePart = () => {
 };
 
 export default SidePart;
-// bg-linear-to-b from-[#FEB2B2] to-[#9B2C2C]

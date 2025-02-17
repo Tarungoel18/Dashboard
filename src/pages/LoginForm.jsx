@@ -54,11 +54,21 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center ">
-      <div className="bg-white bg-opacity-90 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center text-[#E53E3E] mb-6">
-          Let's get started
-        </h2>
+    
+    <div className="w-full max-w-md mx-auto">
+    {/* Logo centered at the top */}
+    <div className="flex justify-center mb-6">
+      <img
+        src="https://latestlogo.com/wp-content/uploads/2024/01/idfc-first-bank-logo.svg"
+        alt="Castler Logo"
+        className="w-24 h-24"
+      />
+    </div>
+
+    <h2 className="text-2xl font-bold text-center text-[#E53E3E] mb-6">
+      Create an Account!
+    </h2>
+
         <Formik
           initialValues={{
             email: "",
@@ -120,7 +130,7 @@ const LoginForm = ({ onLogin }) => {
           )}
         </Formik>
       </div>
-    </div>
+  
   );
 };
 

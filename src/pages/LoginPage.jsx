@@ -1,12 +1,17 @@
 import React from "react";
 import LoginForm from "./LoginForm";
-
 import SidePart from "../components/SidePart";
+
 const LoginPage = () => {
   return (
-    <div className="flex w-full h-full ">
-     <SidePart/>
-      <div className="w-1/2">
+    <div className="flex w-full h-screen bg-gray-50">
+      {/* Left Section: SidePart */}
+      <div className="hidden md:flex w-1/2 justify-center items-center">
+        <SidePart />
+      </div>
+
+      {/* Right Section: Login Form */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center px-8 py-12 bg-white">
         <LoginForm />
       </div>
     </div>
