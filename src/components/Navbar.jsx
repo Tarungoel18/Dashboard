@@ -36,7 +36,7 @@ const Navbar = ({ setIsOpen }) => {
             className="cursor-pointer text-black"
             onClick={handleClick}
           />
-          <img src={logo} className="w-auto h-15" />
+          <img src={logo} className="w-60 h-15" />
         </div>
         <CircleUserRound
           className="cursor-pointer text-black"

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
-import Layout from "../Layout";
-import Home from "./Home";
-import LoginPage from "./LoginPage";
-import SignUpPage from "./SignUpPage";
+
+import Layout from "./Layout";
+import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
 const RouteConfig = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const navigate = useNavigate();

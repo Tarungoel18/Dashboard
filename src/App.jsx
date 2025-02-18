@@ -1,12 +1,7 @@
 // src/App.jsx
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import routes from "./pages/RouteConfig"; // Import route configuration
-import LoginForm from "./pages/LoginForm";
-import SignUpForm from "./pages/SignUpForm";
-import Layout from "./Layout";
-import Home from "./pages/Home";
-import RouteConfig from "./pages/RouteConfig";
+
+import RouteConfig from "./RouteConfig";
 function App() {
   return <RouteConfig />;
 }
